@@ -37,6 +37,7 @@ label {
   margin-top: 10px;
   height: 60px;
   overflow: visible;
+  cursor: text;
 }
 
 .errormsg {
@@ -63,6 +64,8 @@ label {
   border: none;
   border-bottom: #f0f 1px solid;
   border-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   padding: 2px 3px;
   background-color: transparent;
   color: #fff;
