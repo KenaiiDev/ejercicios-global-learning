@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <article>
+      <form id="form">
+        <label class="text-label">
+          <input
+            id="firstName"
+            name="firstName"
+            type="text"
+            placeholder=" "
+            required
+          />
+          <span>First Name</span>
+        </label>
+        <span class="errormsg" id="errorName"></span>
+        <label class="text-label">
+          <input
+            id="lastName"
+            name="lastName"
+            type="text"
+            placeholder=" "
+            required
+          />
+          <span>Last Name</span>
+        </label>
+        <span class="errormsg" id="errorLastName"></span>
+        <label class="text-label">
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder=" "
+            required
+          />
+          <span>Username</span>
+        </label>
+        <span class="errormsg" id="errorUser"></span>
+        <label class="text-label">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder=" "
+            required
+          />
+          <span>Password</span>
+        </label>
+        <span class="errormsg" id="errorPassword"></span>
+        <label class="text-label">
+          <input
+            id="repeatPassword"
+            name="repeatPassword"
+            type="password"
+            placeholder=" "
+            required
+          />
+          <span>Confirm Password</span>
+        </label>
+        <span class="errormsg" id="errorMatch"></span>
+        <label>
+          <span>Birthday</span>
+          <input
+            id="birthday"
+            name="birthday"
+            type="date"
+            name=""
+            id=""
+            required
+          />
+        </label>
+        <label class="checkbox-label">
+          <input
+            id="newsletter"
+            name="newsletter"
+            type="checkbox"
+            name=""
+            id=""
+          />
+          <span>Newsletter</span>
+        </label>
+        <button>Submit</button>
+      </form>
+    </article>
+    <script src="index.js"></script>
+  </body>
+</html>

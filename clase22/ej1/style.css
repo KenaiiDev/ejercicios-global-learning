@@ -1,0 +1,204 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #102;
+  color: #fff;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color-scheme: dark;
+}
+
+article {
+  display: grid;
+  place-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+form {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+span {
+  font-size: 18px;
+  margin: 2px 0;
+}
+
+label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 0.5em;
+  margin-top: 10px;
+  height: 60px;
+  overflow: visible;
+}
+
+.errormsg {
+  margin: 0;
+  padding: 0;
+  color: red;
+  padding-left: 0.67em;
+  font-size: 12px;
+}
+
+.text-label {
+  flex-direction: column-reverse;
+}
+
+.text-label > span {
+  transition: all 0.2s ease;
+  /*make font size 12px without move other elements*/
+  font-size: 12px;
+}
+
+.text-label input[type="text"],
+.text-label input[type="password"] {
+  outline: none;
+  border: none;
+  border-bottom: #f0f 1px solid;
+  border-radius: 3px;
+  padding: 2px 3px;
+  background-color: transparent;
+  color: #fff;
+}
+
+input[type="text"],
+input[type="password"] {
+  transition: all 0.2s ease;
+}
+
+input[type="text"]:placeholder-shown ~ span,
+input[type="password"]:placeholder-shown ~ span {
+  transform: translateY(15px);
+  font-size: 16px;
+}
+
+input[type="text"]:focus ~ span,
+input[type="password"]:focus ~ span {
+  transform: translateY(0);
+  font-size: 12px;
+}
+
+input[type="date"] {
+  appearance: none;
+  outline: none;
+  color: #fff;
+  font-family: sans-serif;
+  border: none;
+  border-bottom: #f0f 1px solid;
+  font-size: 14px;
+  background: transparent;
+  padding: 3px 0;
+}
+
+.checkbox-label {
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.checkbox-label > input {
+  margin-right: 5px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  font: inherit;
+  color: #fff;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid #fff;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: transform 0.12s ease-in-out;
+  box-shadow: inset 1em 1em #faf;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+button {
+  background: black;
+  cursor: pointer;
+  border: none;
+  border: 1px solid #f0f;
+  padding: 8px 16px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+  border-radius: 12px;
+}
+
+button:hover::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    red,
+    blue,
+    deeppink,
+    blue,
+    red,
+    blue,
+    deeppink,
+    blue
+  );
+  background-size: 800%;
+  border-radius: 10px;
+  filter: blur(8px);
+  animation: glowbutton 20s linear infinite;
+}
+
+button:active::before {
+  display: none;
+}
+
+button:disabled {
+  background-color: #444;
+  color: #888;
+  cursor: not-allowed;
+  border: none;
+}
+
+button:disabled::before {
+  display: none;
+}
+
+@keyframes glowbutton {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
