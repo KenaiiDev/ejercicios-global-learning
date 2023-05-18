@@ -112,5 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("user", JSON.stringify(data));
 
     console.log(JSON.parse(localStorage.getItem("user")));
+
+    document.querySelectorAll("input").forEach((input) => {
+      input.value = "";
+    });
   });
 });
