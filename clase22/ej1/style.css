@@ -21,6 +21,7 @@ form {
   display: flex;
   flex-direction: column;
   z-index: 2;
+  position: relative;
 }
 
 span {
@@ -34,7 +35,7 @@ label {
   flex-direction: column;
   border-radius: 10px;
   padding: 0.5em;
-  margin-top: 10px;
+  margin: 9px 0;
   height: 60px;
   overflow: visible;
   cursor: text;
@@ -46,29 +47,54 @@ label {
   color: red;
   padding-left: 0.67em;
   font-size: 12px;
+  position: absolute;
+}
+
+#errorName {
+  top: 62px;
+}
+
+#errorLastName {
+  top: 140px;
+}
+
+#errorUser {
+  top: 219px;
+}
+
+#errorPassword {
+  top: 297px;
+}
+
+#errorMatch {
+  top: 374px;
 }
 
 .text-label {
   flex-direction: column-reverse;
 }
 
-.text-label > span {
+.text-label>span {
   transition: all 0.2s ease;
   /*make font size 12px without move other elements*/
   font-size: 12px;
 }
 
-.text-label input[type="text"],
-.text-label input[type="password"] {
+input {
   outline: none;
   border: none;
   border-bottom: #f0f 1px solid;
   border-radius: 3px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  color: #fff;
   padding: 2px 3px;
   background-color: transparent;
-  color: #fff;
+}
+
+input[type="date"] {
+  font-family: sans-serif;
+  padding-left: 0;
 }
 
 input[type="text"],
@@ -76,28 +102,16 @@ input[type="password"] {
   transition: all 0.2s ease;
 }
 
-input[type="text"]:placeholder-shown ~ span,
-input[type="password"]:placeholder-shown ~ span {
+input[type="text"]:placeholder-shown~span,
+input[type="password"]:placeholder-shown~span {
   transform: translateY(15px);
   font-size: 16px;
 }
 
-input[type="text"]:focus ~ span,
-input[type="password"]:focus ~ span {
+input[type="text"]:focus~span,
+input[type="password"]:focus~span {
   transform: translateY(0);
   font-size: 12px;
-}
-
-input[type="date"] {
-  appearance: none;
-  outline: none;
-  color: #fff;
-  font-family: sans-serif;
-  border: none;
-  border-bottom: #f0f 1px solid;
-  font-size: 14px;
-  background: transparent;
-  padding: 3px 0;
 }
 
 .checkbox-label {
@@ -107,7 +121,16 @@ input[type="date"] {
   align-items: center;
 }
 
-.checkbox-label > input {
+.checkbox-label>span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+.checkbox-label>input {
   margin-right: 5px;
 }
 
@@ -160,17 +183,15 @@ button:hover::before {
   z-index: -1;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    45deg,
-    red,
-    blue,
-    deeppink,
-    blue,
-    red,
-    blue,
-    deeppink,
-    blue
-  );
+  background: linear-gradient(45deg,
+      red,
+      blue,
+      deeppink,
+      blue,
+      red,
+      blue,
+      deeppink,
+      blue);
   background-size: 800%;
   border-radius: 10px;
   filter: blur(8px);

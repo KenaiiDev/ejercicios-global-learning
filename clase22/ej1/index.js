@@ -9,19 +9,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
     button.disabled = empty;
   };
-
   checkInputs();
+
+  const errors = {
+    firstName: false,
+    lastName: false,
+    username: false,
+    password: false,
+    repeatPassword: false,
+  };
+
+  const checkValidForm = () => {
+    const valid = Object.values(errors).some((error) => error);
+    button.disabled = valid;
+  };
 
   const changeInput = ({ event, regex, errorSpan, errorMessage }) => {
     const exp = new RegExp(regex);
     if (exp.test(event.target.value)) {
       event.target.style.borderColor = "#f00";
       errorSpan.innerHTML = errorMessage;
-      button.disabled = true;
+      errors[event.target.id] = true;
     } else {
       event.target.style.borderColor = "#f0f";
       errorSpan.innerHTML = "";
+      errors[event.target.id] = false;
       checkInputs();
+    }
+  };
+
+  const checkValidPassword = (password) => {
+    let isValid = true;
+    isValid &&= password.length >= 8;
+    isValid &&= /[a-z]/.test(password);
+    isValid &&= /[A-Z]/.test(password);
+    isValid &&= /[0-9]/.test(password);
+    if (!isValid) {
+      document.getElementById("errorPassword").innerHTML =
+        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number";
+      errors.password = true;
+    } else {
+      document.getElementById("errorPassword").innerHTML = "";
+      errors.password = false;
     }
   };
 
@@ -32,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       errorSpan: document.getElementById("errorName"),
       errorMessage: "Name must contain only letters",
     });
+    checkValidForm();
   });
 
   document.getElementById("lastName").addEventListener("input", (e) => {
@@ -41,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       errorSpan: document.getElementById("errorLastName"),
       errorMessage: "Last Name must contain only letters",
     });
+    checkValidForm();
   });
 
   document.getElementById("username").addEventListener("input", (e) => {
@@ -50,32 +81,30 @@ document.addEventListener("DOMContentLoaded", () => {
       errorSpan: document.getElementById("errorUser"),
       errorMessage: "Username must contain only letters and numbers",
     });
+    checkValidForm();
   });
 
   document.getElementById("password").addEventListener("input", (e) => {
-    changeInput({
-      event: e,
-      regex: /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/,
-      errorSpan: document.getElementById("errorPassword"),
-      errorMessage:
-        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number",
-    });
+    checkValidPassword(e.target.value);
+    checkValidForm();
   });
 
   document.getElementById("repeatPassword").addEventListener("input", (e) => {
     if (e.target.value !== document.getElementById("password").value) {
       e.target.style.borderColor = "#f00";
       document.getElementById("errorMatch").innerHTML = "Passwords must match";
-      button.disabled = true;
+      errors.repeatPassword = true;
     } else {
       e.target.style.borderColor = "#f0f";
       document.getElementById("errorMatch").innerHTML = "";
-      button.disabled = false;
+      errors.repeatPassword = false;
     }
+    checkValidForm();
   });
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    checkValidForm();
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
